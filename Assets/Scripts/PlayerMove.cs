@@ -14,19 +14,24 @@ public class PlayerMove : MonoBehaviour
     public float speed = 10f; // скорость персонажа
     public float gravity = -9.81f; // гравитация для падения
     public float jump = 3;
-
-    public Vector3 velocity; // вектор падения
-
+    public int valuables = 5; // количество ценных предметов у игрок
+    public Vector3 velocity; // вектор падени
     public Transform groundPoint; // центр сферы, которая будет проверять стоим ли мы на земле
     public float groundDistance = 0.9f; //  радиус сферы, которая будет проверять стоим ли мы на земле
-    public LayerMask groundMask; // слой для земли и других объектов
-
+    public LayerMask groundMask; // слой для земли и других объекто
     bool isGround; // переменная, которая отвечает, стоим ли мы на земле или нет
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            
+        }
     }
 
     // Update is called once per frame

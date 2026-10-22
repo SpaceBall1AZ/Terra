@@ -9,10 +9,13 @@ public class ShopkeeperInterface : MonoBehaviour
     private bool shopIsOpen = false;
     [SerializeField] private TMP_Text text;
     [SerializeField] PlayerMove player;
+    [SerializeField] private TMP_Text rocks;
+    [SerializeField] private TMP_Text coins;
     private int healthUpgradeCost = 40; // Cost for upgrading health
     private int damageUpgradeCost = 50; // Cost for upgrading damage
     private int speedUpgradeCost = 35; // Cost for upgrading speed
     private int luckUpgradeCost = 90; // Cost for upgrading luck
+    private int valuableSellingPrice = 50; // Price for selling valuable items
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,12 +48,24 @@ public class ShopkeeperInterface : MonoBehaviour
         {
             shopUi.SetActive(false);
         }
+        updateRocksText();
+        updateCoinsText();
     }
 
     private void ToggleShop()
     {
         print ("Shop is Open");
         shopUi.SetActive(true);
+        updateRocksText();
+        updateCoinsText();
+    }
+    private void updateRocksText()
+    {
+        rocks.text = "Rocks: " + player.valuables.ToString();
+    }
+    private void updateCoinsText()
+    {
+        coins.text = "Coins: " + player.coins.ToString();
     }
     public void UpgradeHealth()
     {
@@ -104,4 +119,18 @@ public class ShopkeeperInterface : MonoBehaviour
             Debug.Log("Not enough coins to upgrade luck.");
         }
     }
+    public void SellValuable()
+    {
+        if (player.valuables > 0)
+        {
+            player.coins += valuableSellingPrice;
+            player.valuables -= 1; // Remove one valuable item from the player's inventory
+            Debug.Log("Valuable item sold! Coins earned: " + valuableSellingPrice);
+        }
+        else
+        {
+            Debug.Log("No valuable item to sell.");
+        }
+    }
+
 }
