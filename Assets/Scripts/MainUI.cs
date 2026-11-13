@@ -4,7 +4,6 @@ using TMPro;
 
 public class MainUI : MonoBehaviour
 {
-    [SerializeField] private TMP_Text healthText;
     [SerializeField] private Slider healthSlider;
     public float damageRate = 3f; // Rate at which health decreases per second when being damaged
     private PlayerMove playerMove;
@@ -23,9 +22,8 @@ public class MainUI : MonoBehaviour
     public void SliderUpdate()
     {
         healthSlider.value = playerMove.health;
-        healthText.text = playerMove.health.ToString();
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         playerMove.health -= damage;
         if (playerMove.health < 0)

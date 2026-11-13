@@ -7,10 +7,10 @@ public class PlayerMove : MonoBehaviour
 {
     CharacterController controller;
 
-    public int health = 100; // Текущее здоровье игрока
+    public float health = 100; // Текущее здоровье игрока
     public int coins = 100; // количество денег игрока
     public int luck = 0; // удача игрока
-    public int damage = 10; // урон игрока
+    public float damage = 10; // урон игрока
     public float speed = 10f; // скорость персонажа
     public float gravity = -9.81f; // гравитация для падения
     public float jump = 3;
@@ -25,13 +25,6 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-    }
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            
-        }
     }
 
     // Update is called once per frame
